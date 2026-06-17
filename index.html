@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Long Dark Overlay</title>
+<style>
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:transparent;
+}
+.overlay{
+    position:absolute;
+    left:40px;
+    bottom:40px;
+    width:700px;
+    height:220px;
+    animation: cycle 30s infinite;
+}
+.aurora{
+    position:absolute;
+    inset:0;
+    border-radius:18px;
+    overflow:hidden;
+}
+.aurora:before{
+    content:"";
+    position:absolute;
+    inset:-50%;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(80,255,180,.25), transparent 25%),
+      radial-gradient(circle at 70% 50%, rgba(80,180,255,.22), transparent 25%);
+    animation: auroraMove 10s linear infinite;
+}
+.panel{
+    position:absolute;
+    inset:0;
+    background:rgba(10,20,30,.35);
+    border:1px solid rgba(180,220,255,.25);
+    border-radius:18px;
+    backdrop-filter: blur(6px);
+    box-shadow:0 0 25px rgba(150,220,255,.15);
+}
+.wolf{
+    position:absolute;
+    left:20px;
+    bottom:15px;
+    height:170px;
+    opacity:.85;
+    filter: brightness(3) grayscale(1);
+}
+.logo{
+    position:absolute;
+    left:222px;
+    top:90px;
+    height:120px;
+    filter: drop-shadow(0 0 10px rgba(180,230,255,.7));
+}
 
+.now{
+    position:absolute;
+    left:195px;
+    top:30px;
+    color:#e8f7ff;
+    font-family:Arial,sans-serif;
+    font-size:28px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    text-shadow:0 0 12px rgba(180,230,255,.5);
+}
+.snow span{
+    position:absolute;
+    color:white;
+    animation: snow linear infinite;
+}
+.snow span:nth-child(1){left:10%;animation-duration:7s;}
+.snow span:nth-child(2){left:25%;animation-duration:9s;}
+.snow span:nth-child(3){left:40%;animation-duration:8s;}
+.snow span:nth-child(4){left:60%;animation-duration:10s;}
+.snow span:nth-child(5){left:80%;animation-duration:6s;}
+
+@keyframes snow{
+    from{transform:translateY(-20px);opacity:0;}
+    15%{opacity:.8;}
+    to{transform:translateY(240px);opacity:0;}
+}
+@keyframes auroraMove{
+    from{transform:translateX(-10%);}
+    to{transform:translateX(10%);}
+}
+@keyframes cycle{
+    0%{opacity:0;transform:translateY(15px);}
+    4%,33%{opacity:1;transform:translateY(0);}
+    38%,100%{opacity:0;transform:translateY(15px);}
+}
+</style>
+</head>
+<body>
+<div class="overlay">
+  <div class="aurora"></div>
+  <div class="panel"></div>
+
+  <img class="wolf" src="wolf.png" alt="wolf">
+  <img class="logo" src="logo.png" alt="The Long Dark">
+
+  <div class="now">❄ СЕЙЧАС ИГРАЮ ❄</div>
+
+  <div class="snow">
+    <span>❄</span><span>❄</span><span>❄</span><span>❄</span><span>❄</span>
+  </div>
+</div>
+</body>
+</html>
