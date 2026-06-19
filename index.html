@@ -5,92 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Long Dark Overlay</title>
 <style>
-html,body{
-    margin:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:transparent;
-}
-.overlay{
-    position:absolute;
-    left:40px;
-    bottom:40px;
-    width:700px;
-    height:220px;
-    animation: cycle 30s infinite;
-}
-.aurora{
-    position:absolute;
-    inset:0;
-    border-radius:18px;
-    overflow:hidden;
-}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;}
+.overlay{position:absolute;left:40px;bottom:40px;width:700px;height:220px;transition: opacity .8s ease;}
+.aurora{position:absolute;inset:0;border-radius:18px;overflow:hidden;}
 .aurora:before{
-    content:"";
-    position:absolute;
-    inset:-50%;
-    background:
-      radial-gradient(circle at 30% 50%, rgba(80,255,180,.25), transparent 25%),
-      radial-gradient(circle at 70% 50%, rgba(80,180,255,.22), transparent 25%);
-    animation: auroraMove 10s linear infinite;
+content:"";
+position:absolute;inset:-50%;
+background:
+radial-gradient(circle at 30% 50%, rgba(80,255,180,.25), transparent 25%),
+radial-gradient(circle at 70% 50%, rgba(80,180,255,.22), transparent 25%);
+animation:auroraMove 10s linear infinite;
 }
 .panel{
-    position:absolute;
-    inset:0;
-    background:rgba(10,20,30,.35);
-    border:1px solid rgba(180,220,255,.25);
-    border-radius:18px;
-    backdrop-filter: blur(6px);
-    box-shadow:0 0 25px rgba(150,220,255,.15);
+position:absolute;inset:0;
+background:rgba(10,20,30,.35);
+border:2px solid rgba(180,220,255,.45);
+border-radius:18px;
+backdrop-filter:blur(6px);
 }
+
+.block{position:absolute;inset:0;opacity:0;transition:opacity .8s;}
+.block.active{opacity:1;}
+
 .wolf{
-    position:absolute;
-    left:20px;
-    bottom:15px;
-    height:170px;
-    opacity:.85;
-    filter: brightness(3) grayscale(1);
+position:absolute;left:10px;bottom:-15px;height:220px;
+opacity:.15;filter:brightness(3) grayscale(1);
 }
+
 .logo{
-    position:absolute;
-
-    left:50%;
-    top:70px;
-
-    transform:translateX(-50%);
-
-    height:145px;
-
-    filter:
-        drop-shadow(0 0 10px rgba(180,230,255,.7))
-        drop-shadow(0 0 25px rgba(180,230,255,.4));
+position:absolute;left:50%;top:55px;
+transform:translateX(-50%);
+height:145px;
+filter:drop-shadow(0 0 10px rgba(180,230,255,.7));
 }
-.now{
-    position:absolute;
 
-    width:100%;
-
-    top:20px;
-    left:0;
-
-    text-align:center;
-
-    color:#e8f7ff;
-
-    font-family:Arial,sans-serif;
-    font-size:26px;
-
-    letter-spacing:4px;
-    text-transform:uppercase;
-
-    text-shadow:0 0 12px rgba(180,230,255,.5);
+.now,.title{
+position:absolute;width:100%;top:20px;left:0;
+text-align:center;color:#e8f7ff;
+font-family:Arial,sans-serif;font-size:26px;
+letter-spacing:4px;text-transform:uppercase;
+text-shadow:0 0 12px rgba(180,230,255,.5);
 }
-.snow span{
-    position:absolute;
-    color:white;
-    animation: snow linear infinite;
+
+.content{
+position:absolute;width:100%;top:80px;
+text-align:center;color:white;font-size:34px;
+line-height:1.6;font-family:Arial,sans-serif;
 }
+
+.snow span{position:absolute;color:white;animation:snow linear infinite;}
 .snow span:nth-child(1){left:10%;animation-duration:7s;}
 .snow span:nth-child(2){left:25%;animation-duration:9s;}
 .snow span:nth-child(3){left:40%;animation-duration:8s;}
@@ -98,34 +61,92 @@ html,body{
 .snow span:nth-child(5){left:80%;animation-duration:6s;}
 
 @keyframes snow{
-    from{transform:translateY(-20px);opacity:0;}
-    15%{opacity:.8;}
-    to{transform:translateY(240px);opacity:0;}
+from{transform:translateY(-20px);opacity:0;}
+15%{opacity:.8;}
+to{transform:translateY(240px);opacity:0;}
 }
 @keyframes auroraMove{
-    from{transform:translateX(-10%);}
-    to{transform:translateX(10%);}
-}
-@keyframes cycle{
-    0%{opacity:0;transform:translateY(15px);}
-    4%,33%{opacity:1;transform:translateY(0);}
-    38%,100%{opacity:0;transform:translateY(15px);}
+from{transform:translateX(-10%);}
+to{transform:translateX(10%);}
 }
 </style>
 </head>
 <body>
-<div class="overlay">
-  <div class="aurora"></div>
-  <div class="panel"></div>
+<div class="overlay" id="overlay">
+<div class="aurora"></div>
+<div class="panel"></div>
 
-  <img class="wolf" src="wolf.png" alt="wolf">
-  <img class="logo" src="logo.png" alt="The Long Dark">
-
-  <div class="now">❄ СЕЙЧАС ИГРАЮ ❄</div>
-
-  <div class="snow">
-    <span>❄</span><span>❄</span><span>❄</span><span>❄</span><span>❄</span>
-  </div>
+<div class="block active" id="gameBlock">
+<img class="wolf" src="wolf.png">
+<img class="logo" src="logo.png">
+<div class="now">❄ СЕЙЧАС ИГРАЮ ❄</div>
 </div>
+
+<div class="block" id="socialBlock">
+<div class="title">🔗 МОИ СОЦСЕТИ 🔗</div>
+<div class="content">🟢 KICK<br>🔴 YOUTUBE<br>🟣 TWITCH</div>
+</div>
+
+<div class="block" id="donateBlock">
+<div class="title">❤️ ПОДДЕРЖИ КАНАЛ ❤️</div>
+<div class="content">💰 DonationAlerts<br>💸 DonatePay</div>
+</div>
+
+<div class="block" id="subBlock">
+<div class="title">🔥 НРАВИТСЯ КОНТЕНТ? 🔥</div>
+<div class="content">ПОДПИШИСЬ<br>И ПОСТАВЬ ❤️</div>
+</div>
+
+<div class="snow">
+<span>❄</span><span>❄</span><span>❄</span><span>❄</span><span>❄</span>
+</div>
+</div>
+
+<script>
+const blocks = [
+    gameBlock,
+    socialBlock,
+    donateBlock,
+    subBlock
+];
+
+let current = 0;
+
+function showNextBlock() {
+
+    blocks[current].classList.remove('active');
+
+    current++;
+
+    if (current >= blocks.length) {
+
+    current = 0;
+
+   overlay.style.opacity = "0";
+
+    setTimeout(() => {
+
+        overlay.style.opacity = "1";
+
+        blocks[0].classList.add('active');
+
+        runCycle();
+
+    }, 120000);
+
+    return;
+}
+
+    blocks[current].classList.add('active');
+
+    runCycle();
+}
+
+function runCycle() {
+    setTimeout(showNextBlock, 10000);
+}
+
+runCycle();
+</script>
 </body>
 </html>
