@@ -28,22 +28,58 @@ backdrop-filter:blur(6px);
 .block.active{opacity:1;}
 
 .wolf{
-position:absolute;left:10px;bottom:-15px;height:220px;
-opacity:.15;filter:brightness(3) grayscale(1);
+position:absolute;left:-5px;bottom:0px;height:280px;
+opacity:1;
+filter:grayscale(1)
+        brightness(1.5)
+        drop-shadow(0 0 10px rgba(180,230,255,.5));
 }
 
 .logo{
-position:absolute;left:50%;top:55px;
+position:absolute;left:65%;top:100px;
 transform:translateX(-50%);
-height:145px;
-filter:drop-shadow(0 0 10px rgba(180,230,255,.7));
+height:205px;
+filter:drop-shadow(0 0 10px #dff6ff)
+        drop-shadow(0 0 25px #bfefff)
+        drop-shadow(0 0 50px rgba(180,230,255,.7));
+animation: glow 3s ease-in-out infinite;
 }
 
-.now,.title{
-position:absolute;width:100%;top:20px;left:0;
-text-align:center;color:#e8f7ff;
-font-family:Arial,sans-serif;font-size:26px;
-letter-spacing:4px;text-transform:uppercase;
+.banner{
+    position:absolute;
+    left:50%;
+    top:-10px;
+    transform:translateX(-50%);
+    height:125px;
+    filter:drop-shadow(0 0 100px rgba(180,230,255,.6));
+}
+
+.subtitle{
+    position:absolute;
+    width:100%;
+    bottom:5px;
+    text-align:center;
+    color:#C71585;
+    font-family:Arial,sans-serif;
+    font-size:36px;
+    letter-spacing:2px;
+    opacity:.85;
+    text-shadow:0 0 5px rgba(180,230,255,.5);
+}
+
+
+
+.title{
+position:absolute;
+width:100%;
+top:20px;
+left:0;
+text-align:center;
+color:#e8f7ff;
+font-family:Arial,sans-serif;
+font-size:26px;
+letter-spacing:4px;
+text-transform:uppercase;
 text-shadow:0 0 12px rgba(180,230,255,.5);
 }
 
@@ -78,22 +114,24 @@ to{transform:translateX(10%);}
 
 <div class="block active" id="gameBlock">
 <img class="wolf" src="wolf.png">
+<img class="banner" src="banner.png">
 <img class="logo" src="logo.png">
-<div class="now">❄ СЕЙЧАС ИГРАЮ ❄</div>
+
+<div class="subtitle"> Атмосферный симулятор выживания </div>
 </div>
 
 <div class="block" id="socialBlock">
-<div class="title">🔗 МОИ СОЦСЕТИ 🔗</div>
+<div class="title">[МОИ СОЦСЕТИ]</div>
 <div class="content">🟢 KICK<br>🔴 YOUTUBE<br>🟣 TWITCH</div>
 </div>
 
 <div class="block" id="donateBlock">
-<div class="title">❤️ ПОДДЕРЖИ КАНАЛ ❤️</div>
+<div class="title">[ПОДДЕРЖИ КАНАЛ]</div>
 <div class="content">💰 DonationAlerts<br>💸 DonatePay</div>
 </div>
 
 <div class="block" id="subBlock">
-<div class="title">🔥 НРАВИТСЯ КОНТЕНТ? 🔥</div>
+<div class="title">[НРАВИТСЯ КОНТЕНТ?]</div>
 <div class="content">ПОДПИШИСЬ<br>И ПОСТАВЬ ❤️</div>
 </div>
 
